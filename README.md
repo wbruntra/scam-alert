@@ -1,16 +1,73 @@
-# React + Vite
+# Browser Security Awareness Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An educational React application that demonstrates how scammers use publicly available device information to create convincing fake security alerts.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Displays device information using the browser's user agent string
+- Shows a simulated scam alert that uses real device data
+- Educational content about browser security and scam awareness
+- Responsive design with modern UI
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Start development server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Deployment to GitHub Pages
+
+This project is configured for automatic deployment to GitHub Pages.
+
+### Automatic Deployment (Recommended)
+
+1. Push your code to the `main` or `master` branch
+2. GitHub Actions will automatically build and deploy the site
+3. Your site will be available at: `https://[username].github.io/2026-01-11-device-info/`
+
+### Manual Deployment
+
+If you prefer to deploy manually:
+
+```bash
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+### Repository Setup
+
+1. Go to your repository settings on GitHub
+2. Navigate to "Pages" in the sidebar
+3. Under "Source", select "GitHub Actions"
+4. The workflow will handle the rest automatically
+
+**Note:** If you rename your repository, update the `base` path in `vite.config.js` to match your new repository name.
+
+## Technologies Used
+
+- React 19
+- Vite
+- ua-parser-js for device detection
+- GitHub Actions for CI/CD
+- GitHub Pages for hosting
+
+## Educational Purpose
+
+This tool helps users understand:
+- How websites can access basic device information
+- Why scam alerts showing device details are not trustworthy
+- How to identify and avoid tech support scams
+- Best practices for online security
