@@ -11,7 +11,7 @@ function App() {
     const result = parser.getResult()
     setDeviceInfo(result)
 
-    // Simulate a scam alert after 2 seconds
+    // Simular una alerta de estafa después de 2 segundos
     const timer = setTimeout(() => {
       setShowScamAlert(true)
     }, 2000)
@@ -23,139 +23,160 @@ function App() {
     setShowScamAlert(false)
   }
 
+  // Función para obtener el nombre del dispositivo en español
+  const getDeviceName = () => {
+    if (!deviceInfo) return 'dispositivo'
+
+    if (deviceInfo.device.model) return deviceInfo.device.model
+    if (deviceInfo.device.name) return deviceInfo.device.name
+    if (deviceInfo.device.vendor)
+      return `${deviceInfo.device.vendor} ${deviceInfo.device.type || ''}`
+
+    return 'dispositivo'
+  }
+
   return (
     <div className="app-container">
       <header>
-        <h1>Browser Security Awareness</h1>
+        <h1>Concienciación sobre Seguridad del Navegador</h1>
         <p className="subtitle">
-          Understanding how scammers use your device information against you
+          Comprende cómo los estafadores usan la información de tu dispositivo en tu contra
         </p>
       </header>
 
       <main>
         <div className="content-wrapper">
           <section className="info-section">
-            <h2>Your Device Information</h2>
+            <h2>Información de Tu Dispositivo</h2>
             <div className="device-info-card">
               {deviceInfo ? (
                 <>
-                  <h3>What websites can see about your device:</h3>
+                  <h3>Lo que los sitios web pueden ver sobre tu dispositivo:</h3>
                   <div className="info-grid">
                     {deviceInfo.device.model && (
                       <div className="info-item">
-                        <strong>Device Model:</strong> {deviceInfo.device.model}
+                        <strong>Modelo del dispositivo:</strong> {deviceInfo.device.model}
                       </div>
                     )}
                     {deviceInfo.device.type && (
                       <div className="info-item">
-                        <strong>Device Type:</strong> {deviceInfo.device.type}
+                        <strong>Tipo de dispositivo:</strong> {deviceInfo.device.type}
                       </div>
                     )}
                     <div className="info-item">
-                      <strong>Browser:</strong> {deviceInfo.browser.name}{' '}
+                      <strong>Navegador:</strong> {deviceInfo.browser.name}{' '}
                       {deviceInfo.browser.version}
                     </div>
                     <div className="info-item">
-                      <strong>Operating System:</strong> {deviceInfo.os.name}{' '}
+                      <strong>Sistema Operativo:</strong> {deviceInfo.os.name}{' '}
                       {deviceInfo.os.version}
                     </div>
                     {deviceInfo.cpu.architecture && (
                       <div className="info-item">
-                        <strong>CPU Architecture:</strong> {deviceInfo.cpu.architecture}
+                        <strong>Arquitectura de CPU:</strong> {deviceInfo.cpu.architecture}
                       </div>
                     )}
                   </div>
                   <div className="raw-data">
                     <details>
-                      <summary>View Raw Data</summary>
+                      <summary>Ver Datos en Bruto</summary>
                       <pre>{JSON.stringify(deviceInfo, null, 2)}</pre>
                     </details>
                   </div>
                 </>
               ) : (
-                <p>Loading device information...</p>
+                <p>Cargando información del dispositivo...</p>
               )}
             </div>
           </section>
 
           <section className="educational-section">
-            <h2>The Scam: "Your Browser Is Infected!"</h2>
+            <h2>La Estafa: "¡Tu Navegador Está Infectado!"</h2>
 
             <div className="scam-example">
-              <h3>What happens in this scam:</h3>
+              <h3>¿Qué ocurre en esta estafa?</h3>
               <ol>
-                <li>You visit a website (often via a malicious ad or redirect)</li>
-                <li>A popup appears claiming your device has viruses</li>
-                <li>It shows specific details about your device to appear legitimate</li>
                 <li>
-                  It urges you to download "security software" or call a "tech support" number
+                  Visitas un sitio web (normalmente a través de un anuncio o redirección maliciosa)
+                </li>
+                <li>Aparece un popup afirmando que tu dispositivo tiene virus</li>
+                <li>Muestra detalles específicos sobre tu dispositivo para parecer legítimo</li>
+                <li>
+                  Te urge a descargar "software de seguridad" o llamar a un número de "soporte
+                  técnico"
                 </li>
               </ol>
             </div>
 
             <div className="important-facts">
-              <h3>Important Facts You Need to Know:</h3>
+              <h3>Hechos Importantes que Necesitas Saber:</h3>
 
               <div className="fact-card critical">
-                <h4>🚨 CRITICAL: Device info is PUBLIC</h4>
+                <h4>🚨 CRÍTICO: La información del dispositivo es PÚBLICA</h4>
                 <p>
-                  Every website you visit can access basic information about your browser and
-                  device. This is normal and necessary for websites to function properly.
+                  Cada sitio web que visitas puede acceder a información básica sobre tu navegador
+                  y dispositivo. Esto es normal y necesario para que los sitios web funcionen
+                  correctamente.
                 </p>
                 <p>
-                  The fact that a popup says "Your iPhone" or "Your Chrome browser" means{' '}
-                  <strong>NOTHING</strong> - it's just reading public data.
+                  El hecho de que un popup diga "Tu iPhone" o "Tu navegador Chrome" significa{' '}
+                  <strong>NADA</strong> - solo está leyendo datos públicos.
                 </p>
               </div>
 
               <div className="fact-card warning">
-                <h4>⚠️ "Your phone has 3 viruses" is MEANINGLESS</h4>
+                <h4>⚠️ "Tu teléfono tiene 3 virus" es SIN SENTIDO</h4>
                 <p>
-                  Legitimate security software <strong>cannot</strong> scan your device through a
-                  website without your explicit permission.
+                  El software de seguridad legítimo <strong>no puede</strong> escanear tu
+                  dispositivo a través de un sitio web sin tu permiso explícito.
                 </p>
                 <p>
-                  Any website claiming to detect viruses without installing software first is{' '}
-                  <strong>100% fake</strong>.
+                  Cualquier sitio web que afirme detectar virus sin instalar software primero es{' '}
+                  <strong>100% falso</strong>.
                 </p>
               </div>
 
               <div className="fact-card info">
-                <h4>ℹ️ What scammers are actually doing:</h4>
+                <h4>ℹ️ Lo que los estafadores están haciendo realmente:</h4>
                 <ul>
                   <li>
-                    Using the <code>navigator.userAgent</code> string (available to all websites)
+                    Usando la cadena <code>navigator.userAgent</code> (disponible para todos los
+                    sitios web)
                   </li>
-                  <li>Parsing it with tools like the one used on this page</li>
-                  <li>Displaying generic information to make the scam seem personalized</li>
-                  <li>Trying to scare you into taking harmful actions</li>
+                  <li>Analizándola con herramientas como la usada en esta página</li>
+                  <li>Mostrando información genérica para que la estafa parezca personalizada</li>
+                  <li>Intentando asustarte para que tomes acciones perjudiciales</li>
                 </ul>
               </div>
             </div>
 
             <div className="protection-guide">
-              <h3>How to Protect Yourself:</h3>
+              <h3>Cómo Protegerse:</h3>
               <div className="protection-grid">
                 <div className="protection-item">
                   <div className="icon">❌</div>
-                  <h4>DO NOT:</h4>
+                  <h4>NO HAGAS:</h4>
                   <ul>
-                    <li>Download any "security software" from these popups</li>
-                    <li>Call any "tech support" numbers provided</li>
-                    <li>Enter payment information for "virus removal"</li>
-                    <li>Grant remote access to your device</li>
+                    <li>Descargues ningún "software de seguridad" de estos popups</li>
+                    <li>Llames a ningún número de "soporte técnico" proporcionado</li>
+                    <li>Introduzcas información de pago para "eliminar virus"</li>
+                    <li>Concedas acceso remoto a tu dispositivo</li>
                   </ul>
                 </div>
 
                 <div className="protection-item">
                   <div className="icon">✅</div>
-                  <h4>DO:</h4>
+                  <h4>HACE:</h4>
                   <ul>
-                    <li>Close the browser tab immediately</li>
-                    <li>Use your device's built-in security software for scans</li>
-                    <li>Install apps only from official app stores</li>
-                    <li>Keep your browser and OS updated</li>
-                    <li>Use a reputable ad-blocker to prevent malicious ads</li>
+                    <li>Cierra la pestaña del navegador inmediatamente</li>
+                    <li>
+                      Usa el software de seguridad incorporado en tu dispositivo para escaneos
+                    </li>
+                    <li>Instala aplicaciones solo desde tiendas oficiales de aplicaciones</li>
+                    <li>Mantén tu navegador y sistema operativo actualizados</li>
+                    <li>
+                      Usa un bloqueador de anuncios de confianza para prevenir anuncios maliciosos
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -169,29 +190,33 @@ function App() {
           <div className="scam-alert-modal">
             <div className="scam-alert-header">
               <span className="alert-icon">⚠️</span>
-              <h2>CRITICAL ALERT: Security Threat Detected</h2>
+              <h2>ALERTA CRÍTICA: Amenaza de Seguridad Detectada</h2>
             </div>
             <div className="scam-alert-body">
               <p>
                 <strong>
-                  Your {deviceInfo?.device.model || deviceInfo?.device.name || 'device'} ({deviceInfo?.os.name} {deviceInfo?.os.version}) is infected with 3 viruses!
+                  ¡Tu {getDeviceName()} ({deviceInfo?.os.name} {deviceInfo?.os.version}) está
+                  infectado con 3 virus!
                 </strong>
               </p>
-              <p>Malware detected in {deviceInfo?.browser.name} browser. Immediate action required.</p>
               <p>
-                Call Apple Support immediately:{' '}
+                Malware detectado en el navegador {deviceInfo?.browser.name}. Se requiere acción
+                inmediata.
+              </p>
+              <p>
+                Llama al Soporte de Apple inmediatamente:{' '}
                 <strong className="fake-number">1-800-555-0199</strong>
               </p>
               <p className="scam-disclaimer">
-                (This is a simulated scam alert for educational purposes)
+                (Esta es una alerta de estafa simulada con fines educativos)
               </p>
             </div>
             <div className="scam-alert-footer">
               <button className="scam-button" onClick={closeAlert}>
-                Call Now (This is what scammers want)
+                Llamar Ahora (Esto es lo que quieren los estafadores)
               </button>
               <button className="safe-button" onClick={closeAlert}>
-                Close & Ignore (This is the safe choice)
+                Cerrar e Ignorar (Esta es la opción segura)
               </button>
             </div>
           </div>
@@ -200,12 +225,12 @@ function App() {
 
       <footer>
         <p>
-          This educational tool demonstrates how scammers use publicly available device information
-          to create convincing fake alerts.
+          Esta herramienta educativa demuestra cómo los estafadores usan información de dispositivo
+          disponible públicamente para crear alertas falsas convincentes.
         </p>
         <p className="footer-note">
-          Remember: Legitimate security warnings never appear as website popups asking for
-          immediate action.
+          Recuerda: Las advertencias de seguridad legítimas nunca aparecen como popups en sitios
+          web pidiendo acción inmediata.
         </p>
       </footer>
     </div>
