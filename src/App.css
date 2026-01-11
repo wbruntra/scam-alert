@@ -1,0 +1,335 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f7fa;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e1e5eb;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.info-section, .educational-section {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+}
+
+h3 {
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.device-info-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 4px solid #3498db;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.info-item {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e1e5eb;
+}
+
+.raw-data {
+  margin-top: 20px;
+}
+
+details {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 5px;
+}
+
+pre {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.scam-example, .important-facts, .protection-guide {
+  margin-top: 30px;
+}
+
+.scam-example ol {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.scam-example li {
+  margin-bottom: 8px;
+}
+
+.fact-card {
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.fact-card.critical {
+  background: #ffeaea;
+  border-left-color: #e74c3c;
+}
+
+.fact-card.warning {
+  background: #fff4e6;
+  border-left-color: #e67e22;
+}
+
+.fact-card.info {
+  background: #e8f4fc;
+  border-left-color: #3498db;
+}
+
+.fact-card h4 {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fact-card ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.protection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.protection-item {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.protection-item h4 {
+  margin: 15px 0;
+  color: #2c3e50;
+}
+
+.protection-item ul {
+  margin-left: 20px;
+}
+
+.protection-item li {
+  margin-bottom: 8px;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.scam-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.scam-alert-modal {
+  background: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  overflow: hidden;
+  animation: slideUp 0.3s;
+  border-top: 5px solid #e74c3c;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.scam-alert-header {
+  background: #e74c3c;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.alert-icon {
+  font-size: 2rem;
+}
+
+.scam-alert-body {
+  padding: 25px;
+}
+
+.scam-alert-body p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.fake-number {
+  color: #e74c3c;
+  font-size: 1.2rem;
+}
+
+.scam-disclaimer {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px dashed #bdc3c7;
+}
+
+.scam-alert-footer {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-top: 1px solid #e1e5eb;
+}
+
+.scam-alert-footer button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scam-button {
+  background: #e74c3c;
+  color: white;
+}
+
+.scam-button:hover {
+  background: #c0392b;
+}
+
+.safe-button {
+  background: #2ecc71;
+  color: white;
+}
+
+.safe-button:hover {
+  background: #27ae60;
+}
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e1e5eb;
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.footer-note {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+code {
+  background: #f1f3f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .info-grid, .protection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .scam-alert-footer {
+    flex-direction: column;
+  }
+  
+  .app-container {
+    padding: 15px;
+  }
+  
+  .info-section, .educational-section {
+    padding: 20px;
+  }
+}
